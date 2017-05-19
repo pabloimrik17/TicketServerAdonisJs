@@ -37,6 +37,44 @@ class AuthController {
     response.redirect('/')
   }
 
+    /**
+     * Show login page
+     */
+    * showLoginPage(request, response) {
+        yield response.sendView('auth.login')
+    }
+
+    /**
+     * Handle user authentication
+     */
+    * login(request, response) {
+        const email = request.input('email')
+        const password = request.input('password')
+
+        try {
+            yield request.auth.attempt(email, password)
+
+            // redirect to homepage
+            response.redirect('/')
+        } catch (e) {
+            yield request.with({ error: 'Invalid credentials' }).flash()
+
+            // redirect back with error
+            response.redirect('back')
+        }
+    }
+
+    /**
+     * Logout authenticated user
+     */
+    * logout(request, response) {
+        // logouts the user
+        yield request.auth.logout()
+
+        // redirect to login page
+        response.redirect('/login')
+    }
+
 }
 
 module.exports = AuthController

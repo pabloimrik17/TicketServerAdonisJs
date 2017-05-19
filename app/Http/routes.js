@@ -17,7 +17,19 @@
 
 const Route = use('Route')
 
+
 Route.on('/').render('welcome')
 
+//================= REGISTRO
 Route.get('register', 'AuthController.showRegisterPage')
 Route.post('register', 'AuthController.register')
+//================= REGISTRO
+
+//================= LOGIN
+Route.get('login', 'AuthController.showLoginPage')
+Route.post('login', 'AuthController.login')
+//================= LOGIN
+
+//================= LOGOUT
+Route.get('logout', 'AuthController.logout')
+//================= LOGOUT
