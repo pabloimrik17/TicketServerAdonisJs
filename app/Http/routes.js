@@ -33,3 +33,8 @@ Route.post('login', 'AuthController.login')
 //================= LOGOUT
 Route.get('logout', 'AuthController.logout')
 //================= LOGOUT
+
+//================= TICKETS
+Route.get('new_ticket', 'TicketsController.create')
+Route.post('new_ticket', 'TicketsController.store')
+//================= TICKETS
